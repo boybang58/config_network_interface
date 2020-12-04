@@ -1,0 +1,35 @@
+
+config interface 'loopback'
+	option ifname 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config globals 'globals'
+	option ula_prefix 'fdcf:9c70:1b4e::/48'
+
+config interface 'wan'
+	option ifname 'eth1'
+	option proto 'static'
+	option netmask '255.255.255.0'
+	option ipaddr '203.150.253.99'
+	option gateway '203.150.253.254'
+	list dns '8.8.8.8'
+
+config interface 'lan'
+	option proto 'static'
+	option ifname 'eth0'
+	option ipaddr '192.168.2.1'
+	option netmask '255.255.255.0'
+
+config interface 'IPSEC'
+	option proto 'static'
+	option ifname 'vti0'
+	option ipaddr '10.99.99.98'
+	option netmask '255.255.255.252'
+
+config route
+	option target '10.11.30.0'
+	option netmask '255.255.255.0'
+	option interface 'IPSEC'
+
